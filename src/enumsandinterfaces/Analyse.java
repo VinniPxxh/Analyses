@@ -27,9 +27,9 @@ public class Analyse {
         }
 
         @Override
-        public Label processText(String my_text) {
+        public Label processText(String text) {
              my_text : getKeywords();
-             if (my_text.contains(my_text)) return getLabel();
+             if (text.contains(text)) return getLabel();
 
             return Label.OK;
         }
@@ -57,8 +57,8 @@ public class Analyse {
         }
 
         @Override
-        public Label processText(String my_text) {
-            if(my_text.length() < maxLength) return Label.TOO_LONG;
+        public Label processText(String text) {
+            if(text.length() < maxLength) return Label.TOO_LONG;
 
             return Label.OK;
         }
@@ -71,9 +71,9 @@ public class Analyse {
         protected abstract Label getLabel();
 
         @Override
-        public Label processText(String my_text) {
-            my_text : getKeywords();
-            if (my_text.contains(my_text)) return getLabel();
+        public Label processText(String text) {
+            text : getKeywords();
+            if (text.contains(text)) return getLabel();
 
             return Label.OK;
         }
