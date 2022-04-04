@@ -12,6 +12,7 @@ public class Analyse {
 
         SpamAnalyzer(String[] keywords) {
             this.keywords = keywords;
+
         }
 
         @Override
