@@ -76,8 +76,7 @@ public class Analyse {
 
         public Label checkLabels(TextAnalyzer[] analyzers, String text) {
             for (TextAnalyzer obj_txt_an : analyzers) {
-                Label label_check = obj_txt_an.processText(text);
-                if (label_check != Label.OK) return label_check;
+                if (obj_txt_an.processText(text) != Label.OK) return obj_txt_an.processText(text);
             }
             return Label.OK;
         }
