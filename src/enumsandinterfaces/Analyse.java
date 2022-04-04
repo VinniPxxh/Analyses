@@ -43,16 +43,6 @@ public class Analyse {
         protected Label getLabel() {
             return Label.NEGATIVE_TEXT;
         }
-
-        @Override
-        public Label processText(String my_text) {
-            String[] words_negative = getKeywords();
-            for (String key_i : words_negative) {
-                boolean check = my_text.contains(key_i);
-                if (check) return getLabel();
-            }
-            return Label.OK;
-        }
     }
 
     public class TooLongTextAnalyzer {
@@ -70,18 +60,26 @@ public class Analyse {
         }
     }
 
-    public abstract class KeywordAnalyzer {
+    public abstract class KeywordAnalyzer implements TextAnalyzer {
 
         abstract String[] getKeywords();
 
         abstract Label getLabel();
-    }
 
-    public Label checkLabels(TextAnalyzer[] analyzers, String text) {
-        for (TextAnalyzer obj_txt_an : analyzers) {
-            Label label_check = obj_txt_an.processText(text);
-            if (label_check != Label.OK) return label_check;
+        @Override
+        public Label processText(String my_text) {
+            for (String key_i : getKeywords()) {
+                if (my_text.contains(key_i)) return getLabel();
+            }
+            return Label.OK;
         }
-        return Label.OK;
+
+        public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+            for (TextAnalyzer obj_txt_an : analyzers) {
+                Label label_check = obj_txt_an.processText(text);
+                if (label_check != Label.OK) return label_check;
+            }
+            return Label.OK;
+        }
     }
 }
