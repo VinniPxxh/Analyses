@@ -32,7 +32,6 @@ public class Analyse {
              if (my_text.contains(my_text)) return getLabel();
 
             return Label.OK;
-
         }
     }
 
