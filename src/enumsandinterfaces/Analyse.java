@@ -1,6 +1,12 @@
 package enumsandinterfaces;
 
 public class Analyse {
+    public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+        for (TextAnalyzer obj_txt_an : analyzers) {
+            if (obj_txt_an.processText(text) != Label.OK) return obj_txt_an.processText(text);
+        }
+        return Label.OK;
+    }
     public class SpamAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
         private String[] keywords;
 
@@ -21,11 +27,9 @@ public class Analyse {
 
         @Override
         public Label processText(String my_text) {
-            String[] words_spam = getKeywords();
-            for (String key_i : words_spam) {
-                boolean check = my_text.contains(key_i);
-                if (check) return getLabel();
-            }
+             my_text : getKeywords();
+             if (my_text.contains(my_text)) return getLabel();
+
             return Label.OK;
 
         }
@@ -45,17 +49,17 @@ public class Analyse {
         }
     }
 
-    public class TooLongTextAnalyzer {
-        private String[] keywords;
+    public class TooLongTextAnalyzer implements TextAnalyzer {
 
         private int maxLength;
-
-        TooLongTextAnalyzer(int maxLength) {
+        TooLongTextAnalyzer( int maxLength) {
             this.maxLength = maxLength;
         }
 
-        public Label processText(String text) {
-            if (text.length() > maxLength) return Label.TOO_LONG;
+        @Override
+        public Label processText(String my_text) {
+            if(my_text.length() < maxLength) return Label.TOO_LONG;
+
             return Label.OK;
         }
     }
@@ -68,16 +72,9 @@ public class Analyse {
 
         @Override
         public Label processText(String my_text) {
-            for (String key_i : getKeywords()) {
-                if (my_text.contains(key_i)) return getLabel();
-            }
-            return Label.OK;
-        }
+            my_text : getKeywords();
+            if (my_text.contains(my_text)) return getLabel();
 
-        public Label checkLabels(TextAnalyzer[] analyzers, String text) {
-            for (TextAnalyzer obj_txt_an : analyzers) {
-                if (obj_txt_an.processText(text) != Label.OK) return obj_txt_an.processText(text);
-            }
             return Label.OK;
         }
     }
