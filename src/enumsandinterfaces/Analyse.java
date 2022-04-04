@@ -52,7 +52,7 @@ public class Analyse {
     public class TooLongTextAnalyzer implements TextAnalyzer {
 
         private int maxLength;
-        TooLongTextAnalyzer( int maxLength) {
+        public TooLongTextAnalyzer( int maxLength) {
             this.maxLength = maxLength;
         }
 
@@ -68,7 +68,7 @@ public class Analyse {
 
         abstract String[] getKeywords();
 
-        abstract Label getLabel();
+        protected abstract Label getLabel();
 
         @Override
         public Label processText(String my_text) {
